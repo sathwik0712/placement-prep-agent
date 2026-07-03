@@ -23,6 +23,7 @@ def load_profile(student_id: str) -> StudentProfile | None:
         The StudentProfile object if found and successfully validated, or None.
     """
     path = _get_path(student_id)
+    print(f"[PROFILE STORE] Reading profile from {path}")
     if not path.exists():
         return None
     try:
@@ -43,6 +44,7 @@ def save_profile(profile: StudentProfile) -> None:
         profile: The StudentProfile object to save.
     """
     path = _get_path(profile.student_id)
+    print(f"[PROFILE STORE] Writing profile to {path}")
     profile.last_updated = datetime.utcnow().isoformat()
     data = profile.model_dump()
 
